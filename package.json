@@ -8,15 +8,16 @@
     "dev": "node server/index.js"
   },
   "dependencies": {
-    "better-sqlite3": "^11.0.0",
     "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.0.0",
     "cors": "^2.8.5",
     "docx": "^8.5.0",
+    "dotenv": "^17.3.1",
     "express": "^4.21.0",
+    "groq-sdk": "^0.5.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "pdf-parse": "^1.1.1",
-    "xlsx": "^0.18.5",
-    "groq-sdk": "^0.5.0"
+    "xlsx": "^0.18.5"
   }
 }
