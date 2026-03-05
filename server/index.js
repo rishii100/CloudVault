@@ -48,13 +48,15 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-    console.log(`
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`
 ╔══════════════════════════════════════════════════════╗
 ║   Questionnaire Answering Tool - CloudVault Systems  ║
 ║   Server running at http://localhost:${PORT}            ║
 ╚══════════════════════════════════════════════════════╝
-  `);
-});
+        `);
+    });
+}
 
 module.exports = app;

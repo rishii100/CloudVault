@@ -1,11 +1,16 @@
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', 'data', 'app.db');
+const dbPath = process.env.VERCEL
+  ? path.join('/tmp', 'app.db')
+  : path.join(__dirname, '..', 'data', 'app.db');
+
 const db = new Database(dbPath);
 
-// Enable WAL mode for better concurrent access
-db.pragma('journal_mode = WAL');
+// Enable WAL mode for better concurrent access (only for persistent local disk, not Vercel /tmp)
+if (!process.env.VERCEL) {
+  db.pragma('journal_mode = WAL');
+}
 
 // Create tables
 db.exec(`
