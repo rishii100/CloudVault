@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard — Upload questionnaires and reference documents">
+    <title>Dashboard — CloudVault</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/dashboard" class="navbar-brand">
+            <span>CloudVault</span>
+        </a>
+        <div class="navbar-user">
+            <span class="user-email" id="user-email"></span>
+            <button class="btn-logout" id="btn-logout">Log Out</button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h2>Dashboard</h2>
+            <p>Upload your questionnaire & reference documents, then generate AI-powered answers.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Upload Questionnaire Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Questions</div>
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label for="questionnaire-title">Assignment Title</label>
+                    <input type="text" id="questionnaire-title" class="form-input"
+                        placeholder="e.g. Vendor Security Assessment Q1 2026">
+                </div>
+                <div class="q-tabs">
+                    <button class="q-tab active" id="q-tab-upload" onclick="switchQTab('upload')">Upload File</button>
+                    <button class="q-tab" id="q-tab-paste" onclick="switchQTab('paste')">Paste / Type</button>
+                </div>
+                <div id="q-panel-upload">
+                    <div class="upload-zone" id="questionnaire-zone">
+                        <span class="upload-icon">⬆</span>
+                        <div class="upload-text">Drag & drop or click to upload</div>
+                        <div class="upload-hint">Accepts .txt files</div>
+                        <input type="file" id="questionnaire-input" accept=".txt,text/plain">
+                    </div>
+                </div>
+                <div id="q-panel-paste" style="display: none;">
+                    <textarea id="questionnaire-text" class="q-textarea"
+                        placeholder="Paste or type your questions here, one per line...&#10;&#10;Example:&#10;1. What encryption standards do you use?&#10;2. Describe your access control policy.&#10;3. What compliance certifications do you hold?"></textarea>
+                    <button class="btn btn-primary" id="btn-submit-text" style="margin-top: 12px; width: 100%;">Submit
+                        Questions</button>
+                </div>
+                <div id="questionnaire-status" style="margin-top: 12px; font-size: 13px; color: var(--text-secondary);">
+                </div>
+            </div>
+
+            <!-- Reference Documents Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Reference Documents</div>
+                    <button class="btn btn-secondary btn-sm" id="btn-seed-docs">Load Sample Docs</button>
+                </div>
+                <div class="upload-zone" id="reference-zone" style="padding: 20px;">
+                    <span class="upload-icon">⬆</span>
+                    <div class="upload-text">Upload reference document</div>
+                    <div class="upload-hint">Accepts .txt files</div>
+                    <input type="file" id="reference-input" accept=".txt,text/plain">
+                </div>
+                <ul class="doc-list" id="doc-list" style="margin-top: 12px;"></ul>
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <div class="generate-section" id="generate-section" style="display: none;">
+            <button class="btn-generate" id="btn-generate">
+                Generate Answers with AI
+            </button>
+            <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
+                Powered by Llama 3.3 70B via Groq
+            </p>
+        </div>
+
+        <!-- Version History / Sessions -->
+        <div class="sessions-section">
+            <h3>Version History</h3>
+            <div class="session-list" id="session-list">
+                <div class="empty-state">
+                    <span class="empty-icon">📝</span>
+                    <p>No sessions yet. Upload a questionnaire to get started.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loading-text">Processing...</div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

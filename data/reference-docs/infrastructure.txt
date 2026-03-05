@@ -1,0 +1,27 @@
+CloudVault Systems — Infrastructure and Architecture
+
+1. Cloud Infrastructure
+CloudVault's platform is deployed on Amazon Web Services (AWS) across multiple regions:
+- Primary: US East (N. Virginia) — us-east-1
+- Secondary: EU West (Ireland) — eu-west-1
+- Disaster Recovery: US West (Oregon) — us-west-2
+
+The infrastructure is managed entirely through Infrastructure as Code (IaC) using Terraform and AWS CloudFormation.
+
+2. High Availability
+CloudVault guarantees 99.99% uptime SLA for Enterprise customers and 99.9% for Business customers. Services are deployed across at least 3 Availability Zones (AZs) within each region. Automatic failover is configured with health checks every 10 seconds. Load balancing is handled by AWS Application Load Balancers with auto-scaling groups.
+
+3. Data Redundancy
+All customer data is replicated across 3 Availability Zones in real-time. Daily incremental backups are performed with 30-day retention. Weekly full backups with 1-year retention. Cross-region replication is available for Enterprise customers. Recovery Point Objective (RPO): 1 hour. Recovery Time Objective (RTO): 4 hours.
+
+4. Container Architecture
+All microservices run on Amazon EKS (Elastic Kubernetes Service). Container images are scanned for vulnerabilities before deployment using Trivy. Rolling deployments ensure zero-downtime updates. Service mesh (Istio) provides mTLS, traffic management, and observability.
+
+5. Monitoring and Observability
+Centralized logging via ELK Stack (Elasticsearch, Logstash, Kibana). Metrics collection using Prometheus with Grafana dashboards. Distributed tracing via Jaeger for request flow analysis. Alerting configured through PagerDuty with escalation policies. Real-time system status available at status.cloudvault.io.
+
+6. Disaster Recovery
+Business Continuity Plan (BCP) is tested bi-annually through tabletop exercises. Full disaster recovery drills are conducted annually. Automated failover to DR region (us-west-2) can be triggered within 30 minutes. All DR procedures are documented and maintained by the Infrastructure team. Last successful DR test: November 2023 — full failover completed in 22 minutes.
+
+7. Data Centers
+AWS data centers used by CloudVault comply with: SOC 1/2/3, ISO 27001, PCI DSS, and FedRAMP. Physical access is restricted to authorized AWS personnel only. All data center facilities have redundant power supplies, cooling, and network connectivity.

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review and edit generated answers">
+    <title>Review Answers — CloudVault</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/dashboard" class="navbar-brand">
+            <span>CloudVault</span>
+        </a>
+        <div class="navbar-user">
+            <span class="user-email" id="user-email"></span>
+            <button class="btn-logout" id="btn-logout">Log Out</button>
+        </div>
+    </nav>
+
+    <div class="review-container">
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+        <div class="review-header">
+            <div>
+                <h2 id="review-title">Review Answers</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 4px;" id="review-subtitle"></p>
+            </div>
+            <div class="review-actions">
+                <button class="btn btn-success btn-sm" id="btn-export">
+                    📥 Export DOCX
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="stats-bar">
+            <div class="stat-item">
+                <span>Total Questions</span>
+                <span class="stat-value" id="stat-total">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Answered</span>
+                <span class="stat-value" style="color: var(--success);" id="stat-answered">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Not Found</span>
+                <span class="stat-value" style="color: var(--warning);" id="stat-notfound">0</span>
+            </div>
+        </div>
+
+        <!-- QA List -->
+        <div class="qa-list" id="qa-list">
+            <div class="empty-state">
+                <span class="empty-icon">⏳</span>
+                <p>Loading answers...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading session...</div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/js/review.js"></script>
+</body>
+
+</html>

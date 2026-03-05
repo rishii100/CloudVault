@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-powered Structured Questionnaire Answering Tool by CloudVault Systems">
+  <title>CloudVault — Questionnaire Tool</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <span class="logo-icon">☁️</span>
+        <h1>CloudVault</h1>
+        <p>Questionnaire Answering Tool</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" id="tab-login">Log In</button>
+        <button class="auth-tab" data-tab="signup" id="tab-signup">Sign Up</button>
+      </div>
+
+      <div id="alert" class="alert alert-error"></div>
+
+      <!-- Login Form -->
+      <form class="auth-form active" id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" class="form-input" id="login-email" placeholder="you@company.com" required
+            autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" class="form-input" id="login-password" placeholder="Enter your password" required
+            autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn">
+          Log In
+        </button>
+      </form>
+
+      <!-- Signup Form -->
+      <form class="auth-form" id="signup-form">
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" class="form-input" id="signup-email" placeholder="you@company.com" required
+            autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" class="form-input" id="signup-password" placeholder="Min 6 characters" required
+            minlength="6" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="signup-confirm">Confirm Password</label>
+          <input type="password" class="form-input" id="signup-confirm" placeholder="Confirm your password" required
+            autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="signup-btn">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+
+</html>

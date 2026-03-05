@@ -1,0 +1,16 @@
+CloudVault Systems — Data Encryption Standards
+
+1. Encryption at Rest
+All customer data stored in CloudVault's infrastructure is encrypted at rest using AES-256 encryption. Database volumes use LUKS full-disk encryption. Object storage buckets are encrypted using server-side encryption with customer-managed keys (SSE-CMK). Backup data is also encrypted with AES-256 before being transferred to offsite storage.
+
+2. Encryption in Transit
+All data transmitted between clients and CloudVault services is encrypted using TLS 1.3. Internal service-to-service communication uses mutual TLS (mTLS). API endpoints enforce HTTPS-only connections; HTTP requests are automatically redirected. Certificate management is automated through Let's Encrypt with 90-day renewal cycles.
+
+3. Key Management
+CloudVault uses a dedicated Hardware Security Module (HSM) for master key storage. Encryption keys are rotated every 90 days automatically. Customer-managed keys (CMK) are supported for enterprise customers, allowing customers to bring their own encryption keys (BYOK). Key access is logged and audited. Only authorized personnel with senior-level clearance can access key management systems.
+
+4. Data Integrity
+SHA-256 checksums are computed for all stored objects to verify data integrity. Regular integrity verification scans run weekly to detect any corruption or tampering. Immutable audit logs track all data modifications with timestamps and user IDs.
+
+5. Cryptographic Standards
+CloudVault follows NIST 800-57 guidelines for cryptographic key management. RSA-4096 is used for asymmetric encryption in certificate operations. ECDSA P-256 is used for digital signatures. All deprecated or weak ciphers (DES, 3DES, RC4, MD5) are explicitly disabled.

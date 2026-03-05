@@ -1,0 +1,38 @@
+CloudVault Systems — Access Control Policy
+
+1. Authentication
+CloudVault enforces multi-factor authentication (MFA) for all user accounts. Supported MFA methods include:
+- TOTP (Time-based One-Time Password) via Google Authenticator or Authy
+- Hardware security keys (FIDO2/WebAuthn) such as YubiKey
+- SMS-based verification (available but not recommended for high-security accounts)
+
+Password requirements:
+- Minimum 12 characters
+- Must include uppercase, lowercase, numbers, and special characters
+- Password history enforcement: last 12 passwords cannot be reused
+- Account lockout after 5 failed login attempts for 30 minutes
+
+2. Single Sign-On (SSO)
+CloudVault supports SAML 2.0 and OpenID Connect (OIDC) for enterprise SSO integration. Supported identity providers include: Okta, Azure AD, Google Workspace, and OneLogin. SSO is mandatory for Enterprise and Business plan customers.
+
+3. Role-Based Access Control (RBAC)
+CloudVault implements granular RBAC with the following default roles:
+- Owner: Full administrative access to all resources and billing.
+- Admin: Manage users, configure settings, and access all data.
+- Editor: Create, modify, and delete data within assigned workspaces.
+- Viewer: Read-only access to assigned workspaces.
+- Auditor: Read-only access with full audit log visibility.
+
+Custom roles can be created by Admins to define specific permission sets.
+
+4. Least Privilege Principle
+All user accounts are provisioned with the minimum necessary permissions. Elevated access requires approval through a formal access request process. Temporary elevated access (break-glass) expires automatically after 4 hours. All access grants and revocations are logged in the audit trail.
+
+5. API Access
+API authentication uses OAuth 2.0 with short-lived access tokens (1-hour expiry). API keys are scoped to specific resources and actions. Rate limiting is enforced: 1000 requests per minute for standard accounts, 5000 for enterprise.
+
+6. Session Management
+User sessions expire after 8 hours of inactivity. Maximum session duration is 24 hours, after which re-authentication is required. Concurrent session limits: 5 active sessions per user. Session tokens are rotated on each authentication event.
+
+7. Access Reviews
+Quarterly access reviews are conducted for all systems with Restricted data access. Annual certification of all user access privileges by department managers. Orphaned accounts are automatically disabled after 30 days of inactivity.

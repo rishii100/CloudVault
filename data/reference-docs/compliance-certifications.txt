@@ -1,0 +1,24 @@
+CloudVault Systems — Compliance Certifications
+
+1. SOC 2 Type II
+CloudVault has maintained SOC 2 Type II certification since 2021. Annual audits are performed by Deloitte covering all five trust service criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy. The most recent audit was completed in January 2024 with zero critical findings.
+
+2. ISO 27001
+CloudVault is ISO 27001:2022 certified. The Information Security Management System (ISMS) covers all aspects of our cloud storage and data management operations. Certification is maintained through Bureau Veritas with annual surveillance audits.
+
+3. GDPR Compliance
+CloudVault is fully compliant with the EU General Data Protection Regulation (GDPR). Data Processing Agreements (DPAs) are provided to all customers processing EU personal data. Data subjects can exercise their rights (access, rectification, erasure, portability) through a self-service portal or by contacting privacy@cloudvault.io. Data residency options are available for EU customers, with data centers in Frankfurt and Dublin. A Data Protection Officer (DPO) is appointed and can be reached at dpo@cloudvault.io.
+
+4. HIPAA
+CloudVault offers HIPAA-compliant configurations for healthcare customers. Business Associate Agreements (BAAs) are available upon request. PHI (Protected Health Information) is stored in dedicated, isolated environments. Access to PHI is restricted and fully audited.
+
+5. PCI DSS
+While CloudVault does not process credit card data directly, our infrastructure meets PCI DSS Level 1 requirements. Quarterly ASV (Approved Scanning Vendor) scans are performed. Annual PCI compliance assessments are conducted by a Qualified Security Assessor (QSA).
+
+6. CSA STAR
+CloudVault participates in the Cloud Security Alliance (CSA) STAR program at Level 2 (Attestation). Our CAIQ (Consensus Assessments Initiative Questionnaire) is publicly available on the CSA STAR Registry.
+
+7. Regional Compliance
+FedRAMP authorization is in progress for U.S. government customers.
+CCPA compliance is maintained for California consumer data protection.
+PIPEDA compliance for Canadian customers is fully implemented.

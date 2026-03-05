@@ -1,0 +1,34 @@
+CloudVault Systems — Incident Response Plan
+
+1. Incident Response Team
+CloudVault maintains a dedicated Security Incident Response Team (SIRT) consisting of:
+- Chief Information Security Officer (CISO) — Incident Commander
+- Security Operations Center (SOC) Manager — Triage Lead
+- Senior Security Engineers (3) — Technical Response
+- Legal Counsel — Regulatory and compliance communication
+- Communications Manager — Customer and public notification
+
+The SIRT operates on a 24/7 on-call rotation with a guaranteed 15-minute initial response time.
+
+2. Incident Classification
+Incidents are classified into four severity levels:
+- P1 (Critical): Active data breach, ransomware, or system-wide compromise. Response within 15 minutes.
+- P2 (High): Unauthorized access attempts, significant vulnerability exploits. Response within 1 hour.
+- P3 (Medium): Suspicious activity, policy violations, minor security events. Response within 4 hours.
+- P4 (Low): Informational alerts, false positives, minor anomalies. Response within 24 hours.
+
+3. Incident Response Process
+Phase 1 — Detection: Automated monitoring through SIEM (Splunk), EDR (CrowdStrike), and cloud-native security tools (AWS GuardDuty).
+Phase 2 — Containment: Immediate isolation of affected systems. Network segmentation to prevent lateral movement. Preserve forensic evidence.
+Phase 3 — Eradication: Root cause analysis, removal of malicious artifacts, patching of exploited vulnerabilities.
+Phase 4 — Recovery: Restore affected systems from clean backups. Gradual re-integration with enhanced monitoring.
+Phase 5 — Lessons Learned: Post-incident review within 72 hours. Update runbooks and detection rules.
+
+4. Customer Notification
+In the event of a confirmed data breach affecting customer data:
+- Affected customers are notified within 72 hours as required by GDPR.
+- Notification includes: nature of the breach, data affected, remediation steps taken, and contact information.
+- A dedicated incident page is published at status.cloudvault.io.
+
+5. Breach History
+CloudVault has experienced zero confirmed data breaches since its founding in 2019. Two minor security incidents (P3 level) were identified and resolved in 2023, both involving misconfigured access rules that were detected and remediated within 2 hours with no customer data exposure.

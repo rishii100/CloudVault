@@ -1,0 +1,25 @@
+CloudVault Systems — Security Policy
+
+1. Overview
+CloudVault Systems is committed to maintaining the highest standards of information security. This policy applies to all employees, contractors, and third-party partners who access CloudVault's systems, networks, and data.
+
+2. Data Classification
+All data handled by CloudVault is classified into three tiers:
+- Public: Marketing materials, blog posts, and publicly available documentation.
+- Confidential: Customer metadata, internal communications, and business plans.
+- Restricted: Customer data at rest, encryption keys, authentication credentials, and PII.
+
+3. Employee Security Practices
+All employees undergo mandatory security awareness training during onboarding and annually thereafter. Background checks are performed for all employees with access to Restricted data. Employees must use company-managed devices with full-disk encryption enabled. Screen lock policies require automatic locking after 5 minutes of inactivity.
+
+4. Vulnerability Management
+CloudVault conducts quarterly vulnerability assessments and annual penetration tests performed by certified third-party firms. Critical vulnerabilities are remediated within 24 hours of identification. High-severity vulnerabilities are patched within 7 days. A bug bounty program is maintained through HackerOne for responsible disclosure.
+
+5. Network Security
+All internal networks are segmented using VLANs and firewalls. Remote access requires VPN with multi-factor authentication. Intrusion detection and prevention systems (IDS/IPS) monitor all network traffic. All network logs are retained for a minimum of 12 months.
+
+6. Physical Security
+Data center facilities are SOC 2 Type II certified. Access to server rooms requires badge access and biometric verification. 24/7 video surveillance with 90-day retention. Environmental controls include fire suppression, climate control, and UPS backup power.
+
+7. Third-Party Risk Management
+All vendors with access to customer data undergo security assessments before onboarding. Vendor contracts include data processing agreements (DPAs) and security SLAs. Annual vendor risk reviews are conducted for all critical third-party providers.
