@@ -61,3 +61,144 @@ Instead of manually searching through PDFs and policies, users can upload a ques
    - If an answer's confidence is low, implement an agentic loop where the AI realizes it doesn't have enough context, formulates a new, different search query against the reference docs, and tries again before giving up.
 5. **Modern Frontend Framework:**
    - Migrate the frontend to React/Next.js and TailwindCSS for better component reusability, state management, and easier implementation of complex UI patterns like drag-and-drop reordering of questions.
+
+---
+
+## 🏗 Architecture
+
+### System Overview
+
+```mermaid
+graph TB
+    subgraph Frontend["Frontend · Vanilla HTML/CSS/JS"]
+        LP["index.html<br/>Login / Signup"]
+        DB["dashboard.html<br/>Upload & Manage"]
+        RV["review.html<br/>Review & Export"]
+    end
+
+    subgraph Express["Express.js Server"]
+        IDX["index.js<br/>Entry Point"]
+        AUTH["auth.js<br/>JWT Auth"]
+        UPL["upload.js<br/>File Upload & Parsing"]
+        GEN["generate.js<br/>AI Generation"]
+        EXP["export.js<br/>DOCX Export"]
+    end
+
+    subgraph Core["Core Engine"]
+        RET["retrieval.js<br/>TF-IDF Index"]
+        UTL["utils.js<br/>PDF/XLSX Parsing"]
+    end
+
+    subgraph Storage["Storage Layer"]
+        SQLITE[("SQLite<br/>app.db")]
+        FS["Filesystem<br/>/uploads & /data"]
+    end
+
+    subgraph External["External Services"]
+        GROQ["Groq API<br/>Llama 3.3 70B"]
+    end
+
+    LP -->|POST /api/auth| AUTH
+    DB -->|POST /api/upload| UPL
+    DB -->|POST /api/generate| GEN
+    RV -->|GET /api/export| EXP
+
+    AUTH --> SQLITE
+    UPL --> UTL
+    UPL --> SQLITE
+    UPL --> FS
+    GEN --> RET
+    GEN --> GROQ
+    GEN --> SQLITE
+    EXP --> SQLITE
+    RET --> SQLITE
+```
+
+### Request Flow — Generating Answers
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant FE as Frontend
+    participant API as Express API
+    participant DB as SQLite
+    participant TF as TF-IDF Engine
+    participant AI as Groq / Llama 3.3
+
+    U->>FE: Paste questions + click Submit
+    FE->>API: POST /api/upload/questionnaire-text
+    API->>DB: INSERT session + questions
+    API-->>FE: sessionId
+
+    U->>FE: Click "Generate Answers"
+    FE->>API: POST /api/generate/:sessionId
+    API->>DB: Fetch questions + reference docs
+
+    loop For each question
+        API->>TF: Retrieve top-3 relevant chunks
+        TF-->>API: Chunks + similarity scores
+        API->>AI: Send question + context chunks
+        AI-->>API: Answer + citations + confidence
+        API->>DB: UPDATE answer row
+    end
+
+    API-->>FE: All answers generated
+    FE->>U: Redirect to Review page
+```
+
+### Data Model
+
+```mermaid
+erDiagram
+    users {
+        int id PK
+        text email UK
+        text password_hash
+        datetime created_at
+    }
+
+    reference_docs {
+        int id PK
+        int user_id FK
+        text filename
+        text content
+        int is_default
+        datetime uploaded_at
+    }
+
+    sessions {
+        int id PK
+        int user_id FK
+        text questionnaire_filename
+        text status
+        text version_label
+        datetime created_at
+    }
+
+    answers {
+        int id PK
+        int session_id FK
+        int question_index
+        text question
+        text answer
+        text citations
+        real confidence
+        int edited
+    }
+
+    users ||--o{ reference_docs : "uploads"
+    users ||--o{ sessions : "creates"
+    sessions ||--o{ answers : "contains"
+```
+
+### RAG Pipeline
+
+```mermaid
+flowchart LR
+    A["Reference Docs<br/>(6 .txt files)"] --> B["Chunking<br/>Split into paragraphs"]
+    B --> C["TF-IDF Indexing<br/>Term vectors per chunk"]
+    C --> D["Cosine Similarity<br/>Rank by relevance"]
+    D --> E["Top-3 Chunks<br/>Selected as context"]
+    E --> F["Groq API<br/>Llama 3.3 70B"]
+    F --> G["Structured JSON<br/>answer + citations + confidence"]
+```
