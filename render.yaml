@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cloudvault-questionnaire
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      # GROQ_API_KEY must be added manually in the Render Dashboard -> Environment
+      
+    # Note: On Render's Free tier, the filesystem is ephemeral. 
+    # Any uploaded PDFs or the SQLite database will be wiped when the server restarts.
+    # To keep data permanently, upgrade to the "Starter" plan ($7/mo) and uncomment the disk below:
+    # disk:
+    #   name: cloudvault-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1
