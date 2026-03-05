@@ -27,8 +27,7 @@ db.exec(`
     filename TEXT NOT NULL,
     content TEXT NOT NULL,
     is_default INTEGER DEFAULT 0,
-    uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
   CREATE TABLE IF NOT EXISTS sessions (
@@ -37,8 +36,7 @@ db.exec(`
     questionnaire_filename TEXT NOT NULL,
     status TEXT DEFAULT 'pending',
     version_label TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
   CREATE TABLE IF NOT EXISTS answers (
@@ -49,8 +47,7 @@ db.exec(`
     answer TEXT,
     citations TEXT,
     confidence REAL,
-    edited INTEGER DEFAULT 0,
-    FOREIGN KEY (session_id) REFERENCES sessions(id)
+    edited INTEGER DEFAULT 0
   );
 `);
 
