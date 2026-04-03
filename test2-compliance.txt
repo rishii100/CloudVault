@@ -1,0 +1,6 @@
+1. What compliance certifications does your organization hold?
+2. Are you SOC 2 Type II certified?
+3. How do you ensure GDPR compliance for EU customers?
+4. What is your approach to HIPAA compliance?
+5. How often are compliance audits conducted?
+6. Do you have a dedicated compliance team?

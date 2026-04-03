@@ -1,0 +1,7 @@
+1. How do you implement role-based access control?
+2. Is multi-factor authentication enforced for all users?
+3. Describe your single sign-on capabilities.
+4. How are API access keys managed and rotated?
+5. What is your session timeout policy?
+6. How do you handle privileged access management?
+7. What happens when an employee is terminated — how quickly is access revoked?

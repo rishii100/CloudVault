@@ -1,0 +1,6 @@
+1. Describe your incident response process.
+2. How quickly are security incidents detected and reported?
+3. What is your average time to resolve a critical incident?
+4. Do you conduct post-incident reviews?
+5. How are customers notified in the event of a data breach?
+6. What tools do you use for security monitoring?

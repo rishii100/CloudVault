@@ -1,0 +1,5 @@
+1. What encryption standards do you use for data at rest?
+2. How do you handle encryption key rotation?
+3. What protocols are used for data in transit?
+4. Do you support customer-managed encryption keys?
+5. How is sensitive data classified and protected?
